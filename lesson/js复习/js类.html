@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>js类复习</title>
+</head>
+<body>
+    <div id="test"></div>
+
+    <script type="text/javascript"> 
+    // 【重要】类名首字母要大写
+        class Person {
+            // 类中可以直接写赋值语句，代表给实例对象添加属性
+            sex = 'male'  // 等于在构造器中写 this.sex = 'male'
+            // 使用构造器初始化
+            constructor(name, age){
+                this.name = name
+                this.age = age
+            }
+            // 不能加function
+            speak() {
+                // 反引号
+                console.log(`我叫${this.name}, 我今年${this.age}岁`);
+            }
+            static demo(){
+                console.log(this);
+            }
+        }
+    // 继承Person类
+        class Student extends Person {
+            constructor(name, age, grade){
+                // 若A继承了B，且A使用了constructor，则必要用super继承
+                super(name, age) // 复用父类变量
+                this.grade = grade
+            }
+            // 重写父类函数
+            speak() {
+                console.log(`我叫${this.name}, 我今年${this.age}岁,我是一名${this.grade}学生`);
+            }
+        }
+        let p1 = new Person('小红',18)
+        p1.speak()
+        let s1 = new Student('小明',20,'大一')
+        s1.speak()
+        Person.demo() // 静态方法通过类本身调用，this指向调用对象（person本身）
+    </script> 
+
+    
+</body>
+</html>s

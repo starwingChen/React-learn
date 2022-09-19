@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>hello</title>
+    <script type="text/javascript" src="../js/react.development.js"></script>
+    <script type="text/javascript" src="../js/react-dom.development.js"></script>
+    <script type="text/javascript" src="../js/babel.min.js"></script>
+</head>
+<body>
+    <div id="test"></div>
+    
+    <script type="text/babel"> 
+    /*
+    - 事件名全变成了小驼峰（如onclick变成了onClick）
+    - 事件绑定的区别:
+        原生：onclick = 'demo()'
+        jsx：onClick = {demo}
+    - 【重要】课件15 16解释了this在调用时的指向问题
+    */
+        class Weather extends React.Component {
+            constructor(props){
+                // constructor、render中的this一定是指向实例的
+                super(props)
+                this.state = {isHot:true, cloud:'多云'}
+                // bind接收一个对象，将this的指向重定向到对象上
+                // 执行时先找到原型上的changeWeather函数，将changeWeather函数的this指向实例（即括号中的this），并返回这个函数
+                this.demo = this.changeWeather.bind(this)
+            }
+            changeWeather(){
+                // 由于changeWeather在调用时是作为onClick的回调，所以不是通过实例进行调用，而是直接调用
+                // 又因为类中方法默认开启局部严格模式，所以这里的this指向undefined，而不是实例对象
+                // 要用以上方式解决
+
+                // 【状态不可直接更改】 如this.state.isHot = !this.state.isHot 是错的
+                //  要使用setState 
+                if (this.state.isHot == true) 
+                    this.setState({isHot:false})
+                else 
+                    this.setState({isHot:true})
+            }
+            render(){
+                let {isHot} = this.state  // 解构赋值
+                return <h1 onClick={this.demo}>今天天气很{isHot?'炎热': '凉爽'}, {this.state.cloud}</h1>
+            }
+        }
+        ReactDOM.render(<Weather/>, document.getElementById('test'))
+
+
+    </script> 
+
+    
+</body>
+</html>

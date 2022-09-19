@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>props</title>
+    <script type="text/javascript" src="../js/react.development.js"></script>
+    <script type="text/javascript" src="../js/react-dom.development.js"></script>
+    <script type="text/javascript" src="../js/babel.min.js"></script>
+</head>
+<body>
+    <!-- 被放入的盒子 -->
+    <div id="test"></div>
+    <div id="test2"></div>
+    <div id="test3"></div>
+
+    <script type="text/babel"> 
+
+        class Demo extends React.Component{
+            // 因为这里只是做了一个传props的工作，因此可以省略构造器
+            // 其实大部分情况都可以省略构造器
+            render(){
+                // 解构赋值
+                let {name, age, sex} = this.props
+                return (
+                    <ul>
+                        <li>姓名: {name}</li>
+                        <li>年龄: {age}</li>
+                        <li>性别: {sex}</li>
+                    </ul>
+                )
+            }
+
+        // 可以通过propTypes对传参类型进行限制，或用defaultProps添加默认值
+        }
+
+
+        // 在标签中传入prop属性
+        ReactDOM.render(<Demo name='小红' age={18} sex='女'/>, document.getElementById('test')) // 形式1
+        let data = {name:'小胡',sex:'男',age:20}
+        ReactDOM.render(<Demo {...data}/>, document.getElementById('test2'))  // 形式2，展开运算符+对象+{}的特殊用法
+
+        // 函数式组件使用props
+        function Demo2(props) {
+            let {name, age, sex} = props
+            return (
+                <ul>
+                    <li>姓名: {name}</li>
+                    <li>年龄: {age}</li>
+                    <li>性别: {sex}</li>
+                </ul>
+            )
+         }           
+         ReactDOM.render(<Demo2 name='小黄' age={22} sex='女'/>, document.getElementById('test3'))
+    </script> 
+
+    
+</body>
+</html>

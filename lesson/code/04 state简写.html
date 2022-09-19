@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>state简写</title>
+    <script type="text/javascript" src="../js/react.development.js"></script>
+    <script type="text/javascript" src="../js/react-dom.development.js"></script>
+    <script type="text/javascript" src="../js/babel.min.js"></script>
+</head>
+<body>
+    <div id="test"></div>
+    
+    <script type="text/babel"> 
+
+        class Weather extends React.Component {
+            state = {isHot:true, cloud:'多云'}
+            // 因为类里可以直接写赋值语句，代表直接给【实例对象】添加属性
+            // 又因为箭头函数没有自己的this，如果里面使用了this，其会去找外层函数的this（weather的实例对象），因此可以如下写省去bind操作
+            changeWeather = ()=>{
+
+                if (this.state.isHot == true) 
+                    this.setState({isHot:false})
+                else 
+                    this.setState({isHot:true})
+            }
+            render(){
+                let {isHot} = this.state  // 解构赋值
+                return <h1 onClick={this.changeWeather}>今天天气很{isHot?'炎热': '凉爽'}, {this.state.cloud}</h1>
+            }
+        }
+        ReactDOM.render(<Weather/>, document.getElementById('test'))
+
+
+    </script> 
+
+    
+</body>
+</html>

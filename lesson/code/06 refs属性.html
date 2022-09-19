@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>refs属性</title>
+    <script type="text/javascript" src="../js/react.development.js"></script>
+    <script type="text/javascript" src="../js/react-dom.development.js"></script>
+    <script type="text/javascript" src="../js/babel.min.js"></script>
+</head>
+<body>
+    <!-- 被放入的盒子 -->
+    <div id="test"></div>
+
+    <script type="text/babel"> 
+    class Demo extends React.Component{
+        // refs：相当于标签的唯一标识id
+        showData = ()=>{
+            // 获得ref为inp1的标签
+            let {inp1} = this.refs
+            alert(inp1.value)
+        }
+        showData2 = ()=>{
+            // 获得ref是inp1的标签
+            // 感觉怪怪的
+            alert(this.inp2.value)
+        }
+
+        inp2_self = (node)=>{
+            this.inp2 = node
+            console.log('inp2_self done');
+        }
+
+        // 一个容器只能放一个标签，要放多个标签就要创建多个容器
+        // 可以清楚地知道有几个标签用了ref
+        inp3 = React.createRef()
+        showData3 = ()=>{
+            // 获得ref是inp1的标签
+            // 感觉怪怪的
+            alert(this.inp3.current.value)
+            console.log(this.inp3);
+        }
+        render(){
+            return (
+                // 字符串类型的ref
+                <div>
+                    <input ref='inp1' type="text" placeholder='字符串形式的ref' />&nbsp;
+                    {/*回调函数形式的ref，在页面更新时因为会创建新的函数实例，会多出一个清空动作，所以函数会执行2次（其实无关紧要）*/}
+                    <input ref={(node)=>{this.inp2 = node}} type="text" placeholder='1.回调函数形式的ref' />&nbsp;
+                    {/*将回调函数放在class实例自身可以解决执行2次的问题（不重要）*/}
+                    <input ref={this.inp2_self} type="text" placeholder='2.回调函数形式的ref' /><br/>
+                    {/*容器形式的ref*/}
+                    <input ref={this.inp3} type="text" placeholder='容器形式的ref' /><br/>
+                    <button onClick={this.showData3}>点击显示输入框内容</button>
+                </div>
+
+            )
+        }
+    }
+    ReactDOM.render(<Demo/>, document.getElementById('test'))
+    </script> 
+
+    
+</body>
+</html>

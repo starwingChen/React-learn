@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>hello</title>
+    <script type="text/javascript" src="../js/react.development.js"></script>
+    <script type="text/javascript" src="../js/react-dom.development.js"></script>
+    <script type="text/javascript" src="../js/babel.min.js"></script>
+</head>
+<body>
+    <!-- 被放入的盒子 -->
+    <div id="test"></div>
+
+    <script type="text/javascript"> 
+        let a = [1,2,3]
+        let b = [4,5,6]
+        console.log(...a); // 展开数组 输出 1 2 3
+        let c = [...a, ...b] // 连接数组 输出 [1,2,3,4,5,6]
+
+        let person = {name:'andie', sex:'male'}
+        let p2 = {...person} // 加花括号是复制一个对象
+        let p3 = {...person, name:'tom'} // 复制对象同时增加/修改属性
+
+        // 在函数中使用，表示接收参数不确定，多余的参数形成数组
+        function sum(...numbers) {
+            return numbers.reduce((pre, cur)=>{
+                return pre+cur
+            })
+        }
+        console.log(sum(1,2,3,4));
+        console.log(sum(...a)); // 【在原生js中只能展开数组，不能展开对象】
+    </script> 
+
+    
+</body>
+</html>

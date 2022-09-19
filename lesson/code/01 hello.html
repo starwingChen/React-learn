@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>hello</title>
+    <script type="text/javascript" src="../js/react.development.js"></script>
+    <script type="text/javascript" src="../js/react-dom.development.js"></script>
+    <script type="text/javascript" src="../js/babel.min.js"></script>
+    <style>
+        .react{
+            color: blue;
+        }
+    </style>
+    <!-- 
+    步骤：
+    1. 创建虚拟DOM
+    2. 渲染DOM到页面
+    -->
+</head>
+<body>
+    <div id="test"></div>
+
+    
+    <script type="text/babel">  /*一定要是babel*/
+        let myid = 'react'
+        let data = ['angular','react','vue']
+        // 创建虚拟dom
+        const VDOM = ( /*jsx可以理解成js的语法糖*/
+        /*
+            【非常重要】1.标签中有js表达式或者变量时要加{}【只要有返回值的都是表达式，像for这些都是语句】
+            2.样式类名要用className,而不是class（区别于js语法）
+            3.内联样式要用style={{key:'val',key:'val'}}的形式写
+            4.span中的内容一定 不要 加引号，因为是用jsx的方式创建虚拟dom，而不是字符串
+            【非常重要】5.只能有一个根标签（一般是用一个div框起所有内容）
+            6.input要自闭合<input/>
+            7.每个标签都要有一个唯一key（见下方的<li>）
+        */
+        <div>
+            <h1 id={myid} className="react"> 
+            <span style={{background:'red'}}>hello react</span>
+            </h1> 
+            <input type="text"/> 
+            <h2>练习1 动态加载列表</h2> 
+            <ul>
+                {data.map((ele,index)=>{
+                    return <li key={index}>{ele}</li>
+                })}
+            </ul>
+        </div>
+        
+        )
+
+        // 渲染
+        ReactDOM.render(VDOM,document.getElementById('test'))
+    </script> 
+
+    
+</body>
+</html>

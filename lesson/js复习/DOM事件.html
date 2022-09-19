@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+</head>
+<body>
+    <button id="btn1">按钮1</button>
+    <button id="btn2" onclick="demo()">按钮2</button
+    <button id="btn3">按钮3</button>
+
+    <script>
+        let btn1 = document.getElementById('btn1')
+        let btn3 = document.getElementById('btn3')
+
+        // 三种不同的绑定事件方法
+        btn1.onclick = ()=>{
+            alert('按钮1被点击')
+        }
+        // react里更推荐这一种
+        function demo(){
+            alert('按钮2被点击')
+
+        }
+        btn3.addEventListener('click', ()=>{
+            alert('按钮3被点击')
+        })
+    </script>
+</body>
+</html>

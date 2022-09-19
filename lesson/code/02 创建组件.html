@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>hello</title>
+    <script type="text/javascript" src="../js/react.development.js"></script>
+    <script type="text/javascript" src="../js/react-dom.development.js"></script>
+    <script type="text/javascript" src="../js/babel.min.js"></script>
+</head>
+<body>
+    <div id="test"></div>
+    <div id="test2"></div>
+    
+    <script type="text/babel"> 
+    /*
+    1. 要渲染函数式组件时，函数首字母必须大写
+    2. 类式组件的两个render没联系，仅仅是名字一样
+    3. 渲染时，若组件标签是函数则【调用】它，若是类则【实例化】它
+    */
+        // 函数式组件
+        function Demo(){
+            return <h1>定义一个【简单】函数式组件</h1>
+        }
+        // 组件以标签的形式进行渲染
+        ReactDOM.render(<Demo/>, document.getElementById('test'))
+        
+        // 类式组件
+        class Demo2 extends React.Component {
+            render(){
+                return <h1>定义一个【复杂】类式组件</h1>
+            }
+        }
+        ReactDOM.render(<Demo2/>, document.getElementById('test2'))
+
+
+    </script> 
+
+    
+</body>
+</html>
