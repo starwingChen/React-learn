@@ -1,26 +1,13 @@
-/**
- * @param {number} target
- * @return {number}
- */
-var reachNumber = function (target) {
-    let step = 0
-    let res = 0
-    while(res < target){
-        step++
-        res += step
-    }
-    // 超过的值为奇数
-    if((res-target)%2){
-        step++
-        res += step
-        if((res-target)%2){
-            step++
-        }
-        
-    }
+function add(){
+  var total=[...arguments].reduce((a,b)=>a+b);
+  function sum(){
+    total+=[...arguments].reduce((a,b)=>a+b);;
+    return sum;
+  }
+  sum.toString=function(){
+    return total;
+  }
+  return sum;
+}
 
-
-    return step
-};
-
-console.log(reachNumber(2));
+console.log(add(1,2,3,4));
