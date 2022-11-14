@@ -1,24 +1,21 @@
-import React from 'react';
-import logo from './logo.svg';
+import React from "react";
+import {BrowserRouter, Routes ,Route} from 'react-router-dom'
 import styles from "./App.module.css";
+import { HomePage,SigninPage,RegisterPage,DetailPage } from "./pages";
 
+// 用作路由
 function App() {
   return (
-    <div className={styles['App']}>
-      <header className={styles['App-header']}>
-        <img src={logo} className={styles["App-logo"]} alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className={styles["App-link"]}
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<HomePage/>}/>
+          <Route path="/signin" element={<SigninPage/>}/>
+          <Route path="/register" element={<RegisterPage/>}/>
+          <Route path="/detail/:touristRouteId" element={<DetailPage/>}/> {/*接收url中的参数*/}
+          <Route path="*" element={<h1>404 not found</h1>}/> { /*非以上页面的访问进入这个页面*/}
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 }

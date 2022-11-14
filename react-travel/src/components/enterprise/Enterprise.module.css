@@ -1,0 +1,10 @@
+.image{
+  padding: 20px;
+  background-color: white;
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+}
+Image{
+  height: 100px;
+}

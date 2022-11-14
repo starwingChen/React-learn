@@ -1,0 +1,9 @@
+/* 添加功能：图片适应滚动框 */
+
+.slider{
+  text-align: center;
+  height: 250px;
+  line-height: 250px;
+  background: #364d79;
+  overflow: hidden;
+}
